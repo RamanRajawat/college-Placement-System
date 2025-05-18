@@ -3,6 +3,7 @@ const FrontController = require('../controllers/FrontController')
 const StudentController = require('../controllers/StudentController')
 const HodController = require('../controllers/HodController')
 const CompanyController = require('../controllers/CompanyController')
+const checkAuth = require('../middleware/auth')
 const route =express.Router()
 
 
@@ -12,10 +13,11 @@ route.get('/about',FrontController.about)
 route.get('/contact',FrontController.contact)
 route.get('/login',FrontController.login)
 route.get('/register',FrontController.register)
-route.get('/dashboard',FrontController.dashboard)
+route.get('/dashboard',checkAuth,FrontController.dashboard)
 
 //insert admin
 route.post('/registerAdmin',FrontController.registerAdmin)
+route.post('/verifyLogin', FrontController.verifyLogin)
 
 
 // student controller 
